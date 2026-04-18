@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /alerts
+Disallow: /api/
+
+Sitemap: https://agentledger.example.com/sitemap.xml

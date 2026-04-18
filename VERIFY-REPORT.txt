@@ -1,0 +1,15 @@
+Verification: github.com/devpepe-code/agent-ledger vs this folder (2026-04-17)
+=============================================================================
+
+This export matches your local project at ~/Desktop/agent-ledger, NOT the current
+GitHub default branch snapshot.
+
+Issues found on GitHub (last checked via public clone):
+- README still mentions leaderboard + Solana + @solana/web3.js — removed in app.
+- README says dev server uses Turbopack only — local default is Webpack (optional dev:turbo).
+- Repo still had app/leaderboard/, solana-providers.tsx, lib/solana-explorer.ts — stripped in app.
+- Missing many updates: marketing nav, dashboard perf split, auth simulate flow, etc.
+
+This folder is the corrected baseline to push and replace outdated remote content.
+
+Repo link: https://github.com/devpepe-code/agent-ledger

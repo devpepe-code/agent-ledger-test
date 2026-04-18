@@ -1,0 +1,62 @@
+Push this code to: https://github.com/devpepe-code/agent-ledger
+===============================================================
+
+Prerequisites: Git installed, GitHub account devpepe-code, repo already exists.
+You must be logged in: `gh auth login` OR use HTTPS with a Personal Access Token.
+
+METHOD A — Replace remote in one go (recommended)
+-------------------------------------------------
+
+1) Open Terminal.
+
+2) Clone YOUR repo (creates a working copy with history):
+   cd ~/Desktop
+   git clone https://github.com/devpepe-code/agent-ledger.git agent-ledger-push
+   cd agent-ledger-push
+
+3) Remove everything inside the clone except the .git folder:
+   find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+4) Copy everything from THIS export folder into the clone (including dotfiles like .gitignore):
+   rsync -a ~/Desktop/agent-ledger-for-github/ ~/Desktop/agent-ledger-push/
+
+5) Install deps and sanity-check (optional but strongly recommended):
+   npm ci
+   npm run build
+   npm test
+
+6) Commit and push:
+   git add -A
+   git status
+   git commit -m "Sync repo with latest app (EVM/Base, docs, marketing, perf)"
+   git push origin main
+
+7) Refresh https://github.com/devpepe-code/agent-ledger — README and tree should match.
+
+METHOD B — From your existing local folder that already has edits
+-----------------------------------------------------------------
+
+If ~/Desktop/agent-ledger is your day-to-day folder and you prefer pushing from there:
+
+1) cd ~/Desktop/agent-ledger
+
+2) Add the remote (skip if already added):
+   git remote add origin https://github.com/devpepe-code/agent-ledger.git
+
+3) If 'origin' already exists, check URL:
+   git remote -v
+
+4) Commit all work:
+   git add -A
+   git commit -m "Sync with GitHub"
+
+5) Push (first time):
+   git push -u origin main
+
+If the remote already has commits and push is rejected:
+- Either pull and merge first (git pull origin main --rebase), OR
+- If you intend to overwrite the remote with your local (destructive):
+  git push --force-with-lease origin main
+  Only do this if you are sure nothing on GitHub should be kept.
+
+Secrets: never commit .env — it is excluded from agent-ledger-for-github export.
